@@ -15,7 +15,7 @@
 
 import Foundation
 
-typealias RBBBlockBasedArrayBlock = (Int) -> AnyObject
+typealias RBBBlockBasedArrayBlock = (Int) -> Any
 
 class RBBBlockBasedArray: NSArray {
     

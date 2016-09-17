@@ -25,7 +25,7 @@ class RBBSpringAnimation: CAKeyframeAnimation {
     
     var allowsOverdamping: Bool = true
     
-    typealias RBBAnimationBlock = (CGFloat, CGFloat) -> AnyObject //(t, duration)
+    typealias RBBAnimationBlock = (CGFloat, CGFloat) -> Any //(t, duration)
     
     var mass: Double = 1.0
     var stiffness: Double = 0.0
@@ -50,9 +50,9 @@ class RBBSpringAnimation: CAKeyframeAnimation {
         return result
     }()
     
-    override var values: [AnyObject]! {
+    override var values: [Any]! {
         get {
-            return blockArrayValues as [AnyObject]
+            return blockArrayValues.flatMap({ $0 as? [Any]})
         }
         set {
             //no storage for this property
@@ -125,7 +125,7 @@ class RBBSpringAnimation: CAKeyframeAnimation {
 
         let lerp = RBBInterpolator.interpolate(self.from!, to: self.to!)
         let result: RBBAnimationBlock = {t, _ in
-            return lerp(fraction: oscillation(t))
+            return lerp(oscillation(t))
         }
         return result
     }

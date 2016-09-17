@@ -129,22 +129,23 @@ extension UIView {
     
     fileprivate static func replaceAnimationMethods() {
         //replace actionForLayer...
+        
         method_exchangeImplementations(
-            class_getInstanceMethod(self, #selector(UIView.actionForLayer(_:forKey:))),
+            class_getInstanceMethod(self, #selector(UIView.action(for:forKey:))),
             class_getInstanceMethod(self, #selector(UIView.EA_actionForLayer(_:forKey:))))
         
         //replace animateWithDuration...
         method_exchangeImplementations(
-            class_getClassMethod(self, #selector(UIView.animate(withDuration:animations:)(_:animations:))),
+            class_getClassMethod(self, #selector(UIView.animate(withDuration:animations:))),
             class_getClassMethod(self, #selector(UIView.EA_animateWithDuration(_:animations:))))
         method_exchangeImplementations(
-            class_getClassMethod(self, #selector(UIView.animate(withDuration:animations:completion:)(_:animations:completion:))),
+            class_getClassMethod(self, #selector(UIView.animate(withDuration:animations:completion:))),
             class_getClassMethod(self, #selector(UIView.EA_animateWithDuration(_:animations:completion:))))
         method_exchangeImplementations(
-            class_getClassMethod(self, #selector(UIView.animate(withDuration:delay:options:animations:completion:)(_:delay:options:animations:completion:))),
+            class_getClassMethod(self, #selector(UIView.animate(withDuration:delay:options:animations:completion:))),
             class_getClassMethod(self, #selector(UIView.EA_animateWithDuration(_:delay:options:animations:completion:))))
         method_exchangeImplementations(
-            class_getClassMethod(self, #selector(UIView.animate(withDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:)(_:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:))),
+            class_getClassMethod(self, #selector(UIView.animate(withDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:))),
             class_getClassMethod(self, #selector(UIView.EA_animateWithDuration(_:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:))))
         
     }
@@ -445,7 +446,7 @@ extension CALayer {
     fileprivate static func replaceAnimationMethods() {
         //replace actionForKey
         method_exchangeImplementations(
-            class_getInstanceMethod(self, #selector(CALayer.action(forKey:)(_:))),
+            class_getInstanceMethod(self, #selector(CALayer.action(forKey:))),
             class_getInstanceMethod(self, #selector(CALayer.EA_actionForKey(_:))))
     }
     
